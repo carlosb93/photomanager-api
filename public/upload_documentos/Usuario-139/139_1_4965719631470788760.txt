@@ -1,0 +1,5 @@
+-para la venta directa existe una tabla donde se registre eso o tendriamos que crearla nosotros_???
+-de tenerla que parametros deberia tener en cuenta_???
+-desde la aplicacion principal se va a tener acceso al sitio de subasta_?? o es totalmente independiente_???
+-en el apartado de subvasta cuando una persona sale ganadora existe una tabla donde se registre eso o debemos crearla nosotros (datos dal cliente y del carro y que datos del cliente son necesarios para realizar el tramite)_???
+-que son estos datos y que estructura tienen: [Clave STP, Convenio CIE, Referencia CIE]_???

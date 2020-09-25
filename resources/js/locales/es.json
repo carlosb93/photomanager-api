@@ -1,0 +1,143 @@
+{
+    "dashboard": {
+      "filter": "Filtro",
+      "completedTasks": "Tareas completadas",
+      "dailySales": "Ventas Diarias",
+      "performance": "Rendimiento",
+      "simpleTable": "Tabla Sencilla",
+      "totalShipments": "Envios Totales",
+      "chartCategories": [
+        "Cuentas",
+        "Compras",
+        "Sesiones"
+      ],
+      "tasks": "Tareas({count})",
+      "today": "Hoy",
+      "dropdown": {
+        "action": "Accion",
+        "anotherAction": "Otra Accion",
+        "somethingElse": "Algo Mas"
+      },
+      "usersTable": {
+        "title": "Tabla Sencilla",
+        "columns": [
+          "Nombre",
+          "Pais",
+          "Ciudad",
+          "Salario"
+        ],
+        "data": [
+          {
+            "id": 1,
+            "name": "Dakota Rice",
+            "salary": "$36.738",
+            "country": "Niger",
+            "city": "Oud-Turnhout"
+          },
+          {
+            "id": 2,
+            "name": "Minerva Hooper",
+            "salary": "$23,789",
+            "country": "Curaçao",
+            "city": "Sinaai-Waas"
+          },
+          {
+            "id": 3,
+            "name": "Sage Rodriguez",
+            "salary": "$56,142",
+            "country": "Netherlands",
+            "city": "Baileux"
+          },
+          {
+            "id": 4,
+            "name": "Philip Chaney",
+            "salary": "$38,735",
+            "country": "Korea, South",
+            "city": "Overland Park"
+          },
+          {
+            "id": 5,
+            "name": "Doris Greene",
+            "salary": "$63,542",
+            "country": "Malawi",
+            "city": "Feldkirchen in Kärnten"
+          },
+          {
+            "id": 6,
+            "name": "Mason Porter",
+            "salary": "$98,615",
+            "country": "Chile",
+            "city": "Gloucester"
+          },
+          {
+            "id": 7,
+            "name": "Jon Porter",
+            "salary": "$78,615",
+            "country": "Portugal",
+            "city": "Gloucester"
+          }
+        ]
+      },
+      "taskList": [
+        {
+          "title": "Actualizar la documentacion",
+          "description": "Dwuamish Head, Seattle, WA 8:47 AM",
+          "done": false
+        },
+        {
+          "title": "GDPR Compliance",
+          "description": "The GDPR is a regulation that requires businesses to protect the personal data and privacy of Europe citizens for transactions that occur within EU member states.",
+          "done": true
+        },
+        {
+          "title": "Resolver los problemas",
+          "description": "Fifty percent of all respondents said they would be more likely to shop at a company",
+          "done": false
+        },
+        {
+          "title": "Release v2.0.0",
+          "description": "Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM",
+          "done": false
+        },
+        {
+          "title": "Exportar los archivos procesados",
+          "description": "The report also shows that consumers will not easily forgive a company once a breach exposing their personal data occurs.",
+          "done": false
+        },
+        {
+          "title": "Llegada en proceso de exportacion",
+          "description": "Capitol Hill, Seattle, WA 12:34 AM",
+          "done": false
+        }
+      ]
+    },
+    "sidebar": {
+      "title": " AutoSubasta",
+      "passport": " Auth",
+      "shortTitle": "RN2",
+      "dashboard": "Administración",
+      "subasta": "Subasta",
+      "venta-directa": "Venta Directa",
+      "car-detail": "Detalles del Automóvil",
+      "icons": "Iconos",
+      "maps": "Mapas",
+      "notifications": "Notificaciones",
+      "userProfile": "Perfíl de Usuario",
+      "tableList": "Lista de Tabla",
+      "typography": "Tipografía",
+      "rtlSupport": "Soporte de RTL",
+      "subastas": "Subastas",
+      "favoritos": "Favoritos",
+      "compras": "Compras",
+      "login": "Ingresar",
+      "home": "Inicio",
+      "add-auction": "Añadir Subasta",
+      "add-sale": "Añadir Venta",
+      "offers": "Ofertas",
+      "users": "Usuarios",
+      "config": "Configuraciones",
+      "myoffers": "Mis Autos"
+
+    }
+  }
+  
