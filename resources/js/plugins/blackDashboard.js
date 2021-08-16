@@ -1,12 +1,13 @@
-import SideBar from "../components/SidebarPlugin";
-import Notify from "../components/NotificationPlugin";
+import SideBar from "@/components/SidebarPlugin";
+import Notify from "@/components/NotificationPlugin";
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import RTLPlugin from "./RTLPlugin";
 
 //css assets
-//import "@/assets/sass/black-dashboard.scss";
-import "@/assets/sass/white-dashboard.scss";
+import "@/assets/sass/black-dashboard.scss";
+import "@/assets/css/nucleo-icons.css";
+import "@/assets/demo/demo.css";
 import "@/assets/css/nucleo-icons.css";
 import "@/assets/css/time-picker.css";
 import "@/assets/css/carousel.css";
@@ -34,7 +35,6 @@ import "@/assets/css/row.css";
 import "@/assets/css/select-dropdown.css";
 import "@/assets/css/submenu.css";
 import "@/assets/font-awesome/css/font-awesome.min.css";
-import "@/assets/demo/demo.css";
 import "@/assets/css/materialdesignicons.min.css";
 import "@/assets/css/login100.css";
 import "@/assets/css/table.css";

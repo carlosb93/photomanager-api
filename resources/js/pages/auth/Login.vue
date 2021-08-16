@@ -1,16 +1,14 @@
 <template>
-  
-    
-     
-        <div class="limiter100">
+<div class="limiter100">
 <div class="container-login100">
          <div class="wrap-login100 p-t-190 p-b-30">
 		
 				<form method="post" class="login100-form" v-on:submit.prevent="login" role="form">
+          <div class="avatar-mask">
 					<div class="login100-form-avatar">
 						<img v-bind:src="logo" alt="AVATAR">
 					</div>
-
+ </div>
 				
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Email Requerido" style="margin-top: 50px">
@@ -61,17 +59,12 @@ import Modal from "../../components/Modal";
 import NotificationTemplate from "../Notifications/NotificationTemplate";
 import BaseAlert from "../../components/BaseAlert";
 
-const URL_API_SUBASTA = config.url_api.URL_API_SUBASTA;
-const URL_API_CENTRAL = config.url_api.URL_API_CENTRAL;
+const URL_API = config.url.URL_API;
 /**
  * Arma la URL de el servicio
  */
 function buildURL(api, resource = "") {
-  if (api == "URL_API_CENTRAL") {
-    return URL_API_CENTRAL + resource;
-  } else {
-    return URL_API_SUBASTA + resource;
-  }
+  return URL_API + resource;
 }
 
 export default {
@@ -115,11 +108,16 @@ export default {
   
     
    
-    login() {
+    async login() {
       this.isProcessing = true;
-       axios.post(buildURL("URL_API_SUBASTA", "auth/login"), this.loginRequest)
+      let formData = new FormData()
+        formData.set('email',this.loginRequest.email )
+        formData.append('password',this.loginRequest.password )
+
+       await axios.post(buildURL("URL_API", "auth/login"), formData,{header:{
+         "Access-Control-Allow-Origin": "*"
+       }})
         .then((res) => {
-          
           localStorage.setItem('token', res.data.token);
           this.loginModalVisible = false;
           this.$router.push('/inicio');
@@ -152,5 +150,8 @@ export default {
 };
 
 </script>
-<style>
+<style scoped lang="scss">
+.main-panel > .content {
+    padding: 78px 30px 30px 30px;
+}
 </style>

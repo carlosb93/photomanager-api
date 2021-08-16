@@ -87,7 +87,7 @@
 </template>
 <script>
   import NotificationTemplate from './Notifications/NotificationTemplate';
-  import { BaseAlert } from '../components';
+  import { BaseAlert } from '@/components';
 
   export default {
     components: {
@@ -101,15 +101,10 @@
         }
       };
     },
-    created(){
-
-    },
     methods: {
       notifyVue(verticalAlign, horizontalAlign) {
         const color = Math.floor(Math.random() * 4 + 1);
         this.$notify({
-          message: 'hola',
-          title: 'TEST',
           component: NotificationTemplate,
           icon: "tim-icons icon-bell-55",
           horizontalAlign: horizontalAlign,

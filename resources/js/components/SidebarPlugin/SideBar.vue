@@ -8,18 +8,18 @@
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
-        <a href="https://www.subastas.rn2.site"
+        <a href="http://www.creative-tim.com"
            aria-label="sidebar mini logo"
            class="simple-text logo-mini">
-          <div class="avatar" 
+          <div class="logo-img"
                :class="{'logo-img-rtl': $rtl.isRTL}">
             <img
-              v-bind:src="logo" 
+              v-bind:src="logo"
               alt="">
           </div>
         </a>
-        <a href="#" class="simple-text logo-normal">
-          {{routeName}}
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          {{title}}
         </a>
       </div>
       <slot>
@@ -43,22 +43,10 @@
   import SidebarLink from "./SidebarLink";
 
   export default {
-        data() {
-          return {
-            logo:localStorage.getItem('logo_app'),
-            linkHeight: 65,
-            activeLinkIndex: 0,
-            windowWidth: 0,
-            isWindows: false,
-            hasAutoHeight: false,
-            links: []
-          };
-        },
-
     props: {
       title: {
         type: String,
-        default: "AutoSubasta"
+        default: "PHOTOMANAGER"
       },
       backgroundColor: {
         type: String,
@@ -105,20 +93,24 @@
       arrowMovePx() {
         return this.linkHeight * this.activeLinkIndex;
       },
-      routeName() {
-        const { name } = this.$route;
-        return this.capitalizeFirstLetter(name);
-      },
       shortTitle() {
         return this.title.split(' ')
           .map(word => word.charAt(0))
           .join('').toUpperCase();
-      }      
+      }
+    },
+    data() {
+      return {
+        logo: localStorage.getItem('logo_app'),
+        linkHeight: 65,
+        activeLinkIndex: 0,
+        windowWidth: 0,
+        isWindows: false,
+        hasAutoHeight: false,
+        links: []
+      };
     },
     methods: {
-       capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      },
       findActiveLink() {
         this.links.forEach((link, index) => {
           if (link.isActive()) {
@@ -128,7 +120,7 @@
       },
       addLink(link) {
         const index = this.$slots.links.indexOf(link.$vnode);
-        this.links.splice(index, 0, link); 
+        this.links.splice(index, 0, link);
       },
       removeLink(link) {
         const index = this.links.indexOf(link);

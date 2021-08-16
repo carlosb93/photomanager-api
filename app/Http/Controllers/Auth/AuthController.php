@@ -42,7 +42,8 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(['user' => auth()->user(),'setter' => auth()->user()->id, 'role' => auth()->user()->role(auth()->user()->id)]);
+        
+        return response()->json(['user' => auth()->user(),'setter' => auth()->user()->id, 'role' => auth()->user()->role(auth()->user()->id),'branch_data' => auth()->user()->branch(auth()->user()->id)]);
     }
 
 

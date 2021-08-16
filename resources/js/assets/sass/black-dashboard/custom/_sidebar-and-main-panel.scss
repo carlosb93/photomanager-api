@@ -31,7 +31,7 @@
     box-shadow: 0px 0px 45px 0px rgba(0,0,0,0.6);
     margin-top: 80px;
     margin-left: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
 
     .sidebar-wrapper{
         width: $full-width;
@@ -460,25 +460,25 @@
     float: right;
     width: $full-width;
     min-height: 100vh;
-    border-top: 3px solid $primary;
+    border-top: 2px solid $primary;
     background: linear-gradient($background-black, $background-states-black);
 
     @include transitions (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
     &[data="blue"]{
-      border-top: 3px solid $info;
+      border-top: 2px solid $info;
     }
 
     &[data="green"]{
-      border-top: 3px solid $success;
+      border-top: 2px solid $success;
     }
 
     &[data="purple"]{
-      border-top: 3px solid $purple;
+      border-top: 2px solid $purple;
     }
 
     &[data="primary"]{
-      border-top: 3px solid $primary;
+      border-top: 2px solid $primary;
     }
 
     > .content {
@@ -506,7 +506,7 @@
 }
 
 
-@media (min-width: 991px) {
+@media (min-width: 1366px) {
     .sidebar,
     .main-panel,
     .sidebar-wrapper{

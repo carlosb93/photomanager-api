@@ -18,9 +18,8 @@
         root.classList.toggle('nav-open');
       }
     },
-    computed: {
-    },
     mounted() {
+      
       this.$watch('$route', this.disableRTL, { immediate: true });
       this.$watch('$sidebar.showSidebar', this.toggleNavOpen)
     }

@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-import { BaseTable } from "../components";
+import { BaseTable } from "@/components";
 const tableColumns = ["Name", "Country", "City", "Salary"];
 const tableData = [
   {

@@ -1,7 +1,6 @@
 <template>
   <fade-transition>
     <div v-if="visible" class="alert" :class="[`alert-${type}`, { 'alert-with-icon': withIcon }]" role="alert">
-  
       <slot v-if="!dismissible"></slot>
       <div v-else class="container">
         <slot></slot>
@@ -13,7 +12,6 @@
           </button>
         </slot>
       </div>
-  
     </div>
   </fade-transition>
 </template>
@@ -40,16 +38,14 @@
         type: Boolean,
         default: false,
         description: 'Whether alert contains icon'
-      },
+      }
     },
     data() {
       return {
         visible: true
       }
     },
-    
     methods: {
-    
       dismissAlert() {
         this.visible = false;
       }

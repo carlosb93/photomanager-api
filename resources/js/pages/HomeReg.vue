@@ -13,8 +13,8 @@
 
 				
 
-					<div class="wrap-input100 validate-input m-b-10" style="margin-top: 50px">
-						<h1>Bienvenido a Autosubasta</h1>
+					<div class="wrap-input100 validate-input m-b-10" style="margin-top: 50px; text-align: center">
+						<h1>BIENVENIDO A PHOTOMANAGER</h1>
 					</div>
 
 					

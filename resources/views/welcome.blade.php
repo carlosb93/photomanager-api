@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
   <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon.png">
 
-  <title>{{$name_app}}
+  <title>PHOTOMANAGER
    </title>
 
   <!-- Font Awesome Icons -->
@@ -35,7 +35,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="{{url('home')}}">{{$name_app}}</a>
+      <a class="navbar-brand js-scroll-trigger" href="{{url('home')}}">PHOTOMANAGER</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -144,22 +144,7 @@
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-        @foreach($ofertas as $item)
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ $item['foto'] }}">
-            <img class="img-fluid" src="{{ $item['foto'] }}" alt="{{ $item['titulo'] }}" >
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                {{$item['titulo']}}
-              </div>
-              <div class="project-name">
-
-                {{$item['descripcion']}}
-              </div>
-            </div>
-          </a>
-        </div>
-        @endforeach
+       
         
       </div>
     </div>
@@ -223,12 +208,12 @@
       <div class="row">
         <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
           <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-          <div>{{$telef_app}}</div>
+          <div>+53 58467340</div>
         </div>
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
           <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto: {{$email_app}}"> {{$email_app}}</a>
+          <a class="d-block" href="mailto: playeralfa22@gmail.com"> playeralfa22@gmail.com</a>
         </div>
       </div>
     </div>
@@ -248,10 +233,10 @@
 <script type="text/javascript">
 
 $(function(){
-  let name_app = "{{$name_app}}";
-  let email_app = "{{trim($email_app)}}";
-  let telef_app = "{{trim($telef_app)}}";
-  let logo_app = "{{$logo_app}}";
+  let name_app = "PHOTOMANAGER";
+  let email_app = "playeralfa22@gmail.com";
+  let telef_app ="+53 58467340";
+  let logo_app = "{{ asset('upload_documentos/logo.png') }}";
 
   localStorage.setItem('name_app',name_app);
   localStorage.setItem('telef_app',telef_app);

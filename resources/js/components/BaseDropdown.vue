@@ -11,7 +11,6 @@
         :class="titleClasses"
         :aria-expanded="isOpen"
         :aria-label="title || ariaLabel"
-        @click="toggleDropDown"
         data-toggle="dropdown">
         <slot name="title" :is-open="isOpen">
           <i :class="icon"></i>

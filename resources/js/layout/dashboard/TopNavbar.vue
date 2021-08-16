@@ -19,7 +19,7 @@
             </button>
           </div>
           <strong>
-            <a class="navbar-brand" href="#" style="font-weight: bolder;font-size:18px;margin-left: auto;margin-right: auto;">{{name_app}}</a>
+            <a class="navbar-brand" href="#" style="font-size:20px;margin-left: auto;margin-right: auto;padding-bottom: 10px">{{name_app}}</a>
           </strong>
         </div>
 
@@ -127,10 +127,12 @@
                  <router-link to="/registro" class="nav-item dropdown-item">Registrarse</router-link>
               </li>
               <li class="nav-link" v-if="token === null">
-                 <router-link to="/login" class="nav-item dropdown-item">Iniciar sesion</router-link>
+                 <router-link to="/login" class="nav-item dropdown-item">Iniciar sesión</router-link>
               </li>
-              <div class="dropdown-divider" v-if="token != null"></div>
+              <div class="dropdown-divider" v-if="token != null">
+              </div>
               <li class="nav-link" v-if="token != null">
+                <router-link to="/profile" class="nav-item dropdown-item">Perfíl</router-link>
                 <a href="#" class="nav-item dropdown-item" v-on:click="logout">Salir</a>
               </li>
             </base-dropdown>
@@ -151,20 +153,16 @@ import Modal from "../../components/Modal";
 import NotificationTemplate from "../../pages/Notifications/NotificationTemplate";
 import BaseAlert from "../../components/BaseAlert";
 
-
-
-const URL_API_SUBASTA = config.url_api.URL_API_SUBASTA;
-const URL_API_CENTRAL = config.url_api.URL_API_CENTRAL;
-const URL_API = config.url_api.URL_API;
+const URL_API  = config.url.URL_API;
+const URL_STORAGE = config.url.URL_STORAGE;;
 /**
  * Arma la URL de el servicio
  */
 function buildURL(api, resource = "") {
-  if (api == "URL_API_CENTRAL") {
-    return URL_API_CENTRAL + resource;
-  } else {
-    return URL_API_SUBASTA + resource;
+  if (api == "URL_API") {
+    return URL_API  + resource;
   }
+  
 }
 
 export default {
@@ -199,14 +197,11 @@ export default {
       },
       isProcessing: false,
       // installBtn: "none",
-     avatar:URL_API+'/upload_documentos/avatar.png',
+     avatar: URL_STORAGE+'/upload_documentos/avatar.png',
 
     };
   },
    created(){
-  this.get_notifications();
-  this.setup();
-
    },
   methods: {
 
@@ -232,24 +227,22 @@ this.$router.push(url);
 
     },
    get_notifications(){
-
-axios.get(buildURL("URL_API_SUBASTA", "control"))
-            .then().catch(err => console.log(err));
             
     if(localStorage.getItem('email') == null){
     this.notifica = '0';
     }else{
-
-      axios.get(buildURL("URL_API_SUBASTA", "auth/me"),{ headers:{
-                'Authorization': 'Bearer ' + localStorage.getItem('token')}})
+        const AuthToken = "Bearer " + localStorage.getItem('token')
+       axios.get(buildURL("URL_API", "auth/me"),{headers:{ 
+            'Authorization': AuthToken,
+         }})
         .then((res) => {
           if(res.data.user.imageUrl === null){
-           this.avatar = URL_API+'/upload_documentos/avatar.png';
+           this.avatar = URL_STORAGE+'/upload_documentos/avatar.png';
           }else{
            this.avatar = URL_API+'/'+res.data.user.imageUrl;
           }
          
-           axios.get(buildURL("URL_API_SUBASTA", "notificame/" + res.data.setter))
+           axios.get(buildURL("URL_API", "notificame/" + res.data.setter))
             .then(res => {
               if(res.data.data.length > 0){
   this.notifica = res.data.data
@@ -264,8 +257,6 @@ this.notifica = '0';
 
       
     }
-     
-  
    },
    updateNotifications(){
 Echo.channel('notifica').listen('NotifyEvent', (e) => {
@@ -276,7 +267,8 @@ Echo.channel('notifica').listen('NotifyEvent', (e) => {
    delete_notification(id){
     
     this.updateNotifications();
-      axios.get(buildURL("URL_API_SUBASTA", "destroy_notifica/" + id))
+      axios.get(buildURL("URL_API", "destroy_notifica/" + id),{ header:{
+                "Access-Control-Allow-Origin": "*"}})
         .then(res => {
           
           this.get_notifications();
@@ -290,9 +282,10 @@ Echo.channel('notifica').listen('NotifyEvent', (e) => {
 
       if(localStorage.getItem('token') == null){
         this.$router.push('/out');
-
       }else{
-       axios.post(buildURL("URL_API_SUBASTA", "auth/logout"),{ token: localStorage.getItem('token')})
+       axios.post(buildURL("URL_API", "auth/logout"),{ token: localStorage.getItem('token')},{header:{ 
+           "Access-Control-Allow-Origin": "*"
+         }})
         .then(res => {
           
           localStorage.removeItem('token');
@@ -300,6 +293,8 @@ Echo.channel('notifica').listen('NotifyEvent', (e) => {
           localStorage.removeItem('role');
           localStorage.removeItem('email');
           localStorage.removeItem('isActive');
+          localStorage.removeItem('business_id');
+          
           this.$router.push('/out');
         }).catch(err => {
           localStorage.removeItem('token');
@@ -307,21 +302,13 @@ Echo.channel('notifica').listen('NotifyEvent', (e) => {
           localStorage.removeItem('role');
           localStorage.removeItem('email');
           localStorage.removeItem('isActive');
+          localStorage.removeItem('business_id');
           this.$router.push('/out');
          
         });
     }
     },
-    setup(){
-      axios.get(buildURL("URL_API_SUBASTA", "get_default_setup"))
-        .then(res => {
-          
-          localStorage.setItem(res.data.data[0].parametro,res.data.data[0].value);
-          localStorage.setItem(res.data.data[1].parametro,res.data.data[1].value);
-          localStorage.setItem(res.data.data[2].parametro,res.data.data[2].value);
-          localStorage.setItem(res.data.data[3].parametro,res.data.data[3].value);
-        }).catch(err =>console.lod(err))
-    }
+
     
   }
 };

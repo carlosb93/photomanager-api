@@ -75,7 +75,7 @@
 </template>
 <script>
   import { CollapseTransition } from 'vue2-transitions';
-  import Modal from '../../components/Modal';
+  import Modal from '@/components/Modal';
 
   export default {
     components: {

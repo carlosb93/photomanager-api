@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('isActive')->default(False);
             $table->string('activation_token');
+            $table->string('currency')->default('CUP');
             $table->rememberToken();
             $table->boolean('waiting_api')->default(False);
             $table->boolean('disabled')->default(False);

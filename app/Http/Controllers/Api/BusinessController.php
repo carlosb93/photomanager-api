@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Business;
+use App\Models\Branch;
+
+use Illuminate\Support\Facades\DB;
 use App\Models\RequestHistory;
 use Illuminate\Http\Request;
 use carbon\Carbon;
@@ -56,43 +59,71 @@ class BusinessController extends Controller
  
     public function store(Request $request)
     {
+        
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required|integer'
+            'description' => 'required'
         ]);
- 
+        
         $business = new Business();
         $business->name = $request->name;
         $business->description = $request->description;
         $business->user_id = auth()->user()->id;
- 
-        if (auth()->user()->businesses()->save($business))
+
+        if (auth()->user()->businesses()->save($business)){
+
+        
+        $branch = new Branch();
+        $branch->name = 'Branch of '. $request->name;
+        $branch->description = '';
+        $branch->code = 'CUDA2';
+        $branch->business_id = $business->id;
+        $branch->categoria_id = 1;
+        $branch->disabled = false;
+        $branch->save();
+
+        $branch_user = array([
+            [
+				'user_id' => auth()->user()->id, 
+				'branch_id' => $branch->id,
+                'created_at' => Carbon::now()				
+            ]
+        ]);
+       
+        foreach($branch_user as $item){
+            DB::table('branch_user')->insert($item);
+        }
+    
             return response()->json('done'
             //     [
             //     'success' => true,
             //     'data' => $business->toArray()
             // ]
         );
-        else
+
+    }else{
             return response()->json('sorry'
             //     [
             //     'success' => false,
             //     'message' => 'business could not be added'
             // ]
             , 500);
+        }
     }
  
     public function update(Request $request, $id)
     {
+        
         $business = auth()->user()->businesses()->find($id);
- 
+       
         if (!$business) {
             return response()->json('sorry', 400);
         }
  
-        $updated = $business->fill($request->all())->save();
+        $business->name = $request->name;
+        $business->description = $request->description;
  
-        if ($updated)
+        if ($business->save())
             return response()->json('done'
             //     [
             //     'success' => true

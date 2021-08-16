@@ -1,8 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/common.js": "/common.js",
+    "/common~dashboard.js": "/common~dashboard.js",
+    "/dashboard.js": "/dashboard.js",
     "/js/Administracion.js": "/js/Administracion.js",
     "/js/Perfil.js": "/js/Perfil.js",
     "/js/common.js": "/js/common.js",
-    "/js/subasta-venta.js": "/js/subasta-venta.js"
+    "/vendors~common~dashboard.js": "/vendors~common~dashboard.js",
+    "/vendors~common~dashboard~js/Perfil~js/common.js": "/vendors~common~dashboard~js/Perfil~js/common.js"
 }

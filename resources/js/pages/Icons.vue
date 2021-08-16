@@ -6,7 +6,13 @@
     </div>
     <div class="card-body all-icons">
       <div class="row">
-       
+        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+          <div class="font-icon-detail">
+            <i class="tim-icons icon-alert-circle-exc"></i>
+            <p>icon-alert-circle-exc</p>
+          </div>
+
+        </div>
         <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
           <div class="font-icon-detail">
             <i class="tim-icons icon-align-center"></i>

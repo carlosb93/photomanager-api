@@ -24,7 +24,7 @@ Route::middleware(['auth:api'])->group(function () {
     //  Rutas de negocio
 });
 
-Route::group(['namespace' => 'Profile','prefix'=>'profile'], function () {
+Route::group([ 'namespace' => 'Profile','prefix'=>'profile'], function () {
     // Current user
     Route::group(['prefix' => 'current', 'middleware' => ['auth:api']], function () {
         Route::post('set-password', 'ProfileController@setPassword');
@@ -36,13 +36,20 @@ Route::group(['namespace' => 'Api'], function () {
     Route::middleware(['auth:api'])->group(function () {
 
     Route::resource('business', 'BusinessController');
+    Route::resource('calendar', 'CalendarController');
     Route::resource('branch', 'BranchController');
     Route::resource('role', 'RoleController');
     Route::resource('user', 'UserController');
     Route::get('index', 'HomeController@index')->name('home.api');
-
-    });
+    
 });
+
+    Route::get('initialsetup', 'HomeController@initialsetup');
+
+    
+});
+    
+
 
 
 //llenar filtro routes
@@ -59,3 +66,7 @@ Route::group(['namespace' => 'Api\Support'], function() {
     // Route::get('/listModelosAutos/{id?}', 'CarModelController')->name('listModelosAutos.api');
     // Route::get('/listVersionesAutos', 'AutoVersionController')->name('listVersionesAutos.api');  
 });
+
+
+
+

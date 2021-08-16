@@ -155,7 +155,7 @@ export default {
   z-index: 10000;
 
   &[data-notify='container'] {
-    width: 300px;
+    width: 480px;
     cursor: pointer;
   }
 

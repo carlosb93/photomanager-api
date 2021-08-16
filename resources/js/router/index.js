@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 
 // configure router
+// configure router
 export const router = new VueRouter({
   routes, // short for routes: routes
   base: '/',
@@ -16,6 +17,7 @@ export const router = new VueRouter({
   }
 });
 
+
 //Aquí puedo hacer un chequeo para proteger las rutar, similar a los middleware de laravel
 router.beforeEach((to, from, next) => {
 
@@ -24,7 +26,7 @@ router.beforeEach((to, from, next) => {
     
         if(!localStorage.getItem('token')){
           next({
-            path: '/home',
+            path: '/',
             query: {redirect: to.fullPath}
           })
         }else{
@@ -53,4 +55,5 @@ router.beforeEach((to, from, next) => {
 // next();
  
 })
+
 

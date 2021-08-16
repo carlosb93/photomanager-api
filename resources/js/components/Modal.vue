@@ -10,7 +10,7 @@
 
       <div class="modal-dialog"
            :class="[{'modal-notice': type === 'notice'}, {'modal-dialog-centered': centered}, modalClasses]">
-        <div class="modal-content" :class="[gradient ? `bg-gradient-${gradient}` : '',modalContentClasses]" style="background-color: rgb(0,0,0,0.0);box-shadow: 0 15px 35px rgba(50, 50, 93, 0.0), 0 5px 15px rgba(0, 0, 0, 0.0);">
+        <div class="modal-content" :class="[gradient ? `bg-gradient-${gradient}` : '',modalContentClasses]">
 
           <div class="modal-header" :class="[headerClasses]" v-if="$slots.header">
             <slot name="header"></slot>
@@ -116,6 +116,6 @@ export default {
 </script>
 <style>
 .modal.show {
-  background-color: rgba(255, 252, 252, 0.0);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 </style>

@@ -28,17 +28,12 @@ import config from "../../config";
 import axios from "axios";
 import { CollapseTransition } from "vue2-transitions";
 
-const URL_API_SUBASTA = config.url_api.URL_API_SUBASTA;
-const URL_API_CENTRAL = config.url_api.URL_API_CENTRAL;
+const URL_API = config.url.URL_API;
 /**
  * Arma la URL de el servicio
  */
 function buildURL(api, resource = "") {
-  if (api == "URL_API_CENTRAL") {
-    return URL_API_CENTRAL + resource;
-  } else {
-    return URL_API_SUBASTA + resource;
-  }
+  return URL_API + resource;
 }
 export default {
   name: "register",
@@ -61,7 +56,7 @@ export default {
     register() {
       this.isProcessing = true;
       axios
-        .post(buildURL("URL_API_SUBASTA", "auth/register"), this.registerRequest)
+        .post(buildURL("URL_API", "auth/register"), this.registerRequest)
         .then(res => {
           this.isProcessing = false;
         })

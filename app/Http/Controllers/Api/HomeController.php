@@ -24,4 +24,13 @@ class HomeController extends Controller
                                  'business' => $user->business($branch[0]->business_id)[0],
                                 ]);
     }
+    public function initialsetup()
+    {
+        $name_app = DB::table('config_app')->where('id',1)->get();
+       
+        return response()->json( [$name_app->toArray()] , 200);
+        
+    }
+  
+
 }

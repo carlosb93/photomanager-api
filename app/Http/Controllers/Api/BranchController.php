@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Branch;
+use App\Models\Business;
 use App\Models\RequestHistory;
 use Illuminate\Http\Request;
 use carbon\Carbon;
@@ -61,14 +62,15 @@ class BranchController extends Controller
             'categoria_id' => 'required|integer',
             'code' => 'required',
         ]);
- 
+        $business = Business::where('user_id',auth()->user()->id)->get();
+
         $branch = new Branch();
         $branch->name = $request->name;
         $branch->description = $request->description;
         $branch->code = $request->code;
-        $branch->categoria_id = $request->categoria;
-        $branch->business_id = auth()->user()->businesses()->id;
- 
+        $branch->categoria_id = 0;
+        $branch->business_id =  $business[0]->id;
+
         if (auth()->user()->branches()->save($branch))
             return response()->json('done'
             //     [

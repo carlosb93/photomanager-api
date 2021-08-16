@@ -1,6 +1,5 @@
 {
   "dashboard": {
-    "filter": "Filter",
     "completedTasks": "Completed Tasks",
     "dailySales": "Daily Sales",
     "performance": "Performance",
@@ -112,29 +111,20 @@
     ]
   },
   "sidebar": {
-    "title": " AutoSubasta",
-    "shortTitle": "RN2",
-    "dashboard": "Dashboard",
-    "subasta": "Auction",
-    "venta-directa": "For Sale",
-    "car-detail": "Car Details",
+    "calendar":"Calendario",
+    "branches":"Ramas",
+    "config":"Configuración",
+    "bussiness":"Mi Negocio",
+    "branch":"Mis Ramas",
+    "title": "Creative Tim",
+    "shortTitle": "CT",
+    "dashboard": "dashboard",
     "icons": "Icons",
     "maps": "Maps",
-    "notifications": "Notificaciones",
-    "userProfile": "Perfil de Usuario",
-    "tableList": "Lista de Tabla",
-    "typography": "Tipografia",
-    "rtlSupport": "Soporte de RTL",
-    "subastas": "Subastas",
-    "favoritos": "Favoritos",
-    "compras": "Compras",
-    "login": "Login",
-    "home": "Home",
-    "add-auction": "Add Auction",
-    "add-sale": "Add Sale",
-    "offers": "Offers",
-    "users": "Users",
-    "config": "Settings",
-    "myoffers": "My Cars"
+    "notifications": "Notifications",
+    "userProfile": "User Profile",
+    "tableList": "Table List",
+    "typography": "Typography",
+    "rtlSupport": "RTL Support"
   }
 }

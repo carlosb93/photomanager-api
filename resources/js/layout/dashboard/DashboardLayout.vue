@@ -1,98 +1,52 @@
 <template>
   <div class="wrapper">
-    <side-bar style="border-bottom: 3px inset rgb(253, 185, 19); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+  <div v-if="token != null">
+    <side-bar>
       <template slot="links">
-        <sidebar-link to="/home" :name="$t('sidebar.home')" icon="tim-icons icon-istanbul" />
-         
-        <div v-if="token != null">
-        <sidebar-link to="/subasta" :name="$t('sidebar.subasta')" icon="tim-icons icon-bank" />
-        <sidebar-link to="/venta-directa" :name="$t('sidebar.venta-directa')" icon="tim-icons icon-cart"/>
-        </div>
-        <div v-else>
-        <sidebar-link to="/login" :name="$t('sidebar.subasta')" icon="tim-icons icon-bank" />
-        <sidebar-link to="/login" :name="$t('sidebar.venta-directa')" icon="tim-icons icon-cart"/>
-        </div>
-       
-        <sidebar-link to="/profile" :name="$t('sidebar.userProfile')" icon="tim-icons icon-single-02" v-show="logged_in"/>
-        <sidebar-link to="/favorite" :name="$t('sidebar.favoritos')" icon="tim-icons icon-heart-2" v-show="logged_in"/>
-        <sidebar-link to="/myoffers" :name="$t('sidebar.myoffers')" icon="mdi mdi-shopping-outline"  v-show="logged_in" style="font-size:20px;"/>
-      
+        <sidebar-link to="/home" :name="$t('sidebar.dashboard')" icon="tim-icons icon-chart-pie-36"/>
+ 
+       <li class="nav-item" >
 
-      
-    <el-menu 
-      default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      background-color="transparent"
-      text-color="#fff" v-if="estado == 'true'">
-      <el-submenu index="1">
-        <template slot="title">
-          <span style="font-weight: 300;font-size: 11px;text-transform: uppercase;color: rgba(255, 255, 255, 0.76);">{{$t('sidebar.dashboard')}}</span>
-        </template>
+        <a v-b-toggle.collapse-1 class="nav-link" ><i class="tim-icons icon-bank"></i>Negocio</a>
+           <!-- <span style="content: '';    
+  position: absolute;       
+  right: 15px;    
+  height: 1px;    
+  width: calc(100% - 30px);   
+  background: rgba(255, 255, 255, 0.5);
+"></span>   -->
+         <b-collapse id="collapse-1" class="mt-2" style="background-color: rgb(21 21 33);" >
+             <sidebar-link to="/businessedit" :name="$t('sidebar.config')" icon="tim-icons icon-settings-gear-63"/>
+             <sidebar-link to="/listarramas" :name="$t('sidebar.branches')" icon="tim-icons icon-bullet-list-67"/>
+             <sidebar-link to="/calendar" :name="$t('sidebar.calendar')" icon="tim-icons icon-calendar-60"/>
+         </b-collapse>
+        </li>
+     
+     
+       <li class="nav-item">
+
+        <a v-b-toggle.collapse-2 class="nav-link" ><i class="tim-icons icon-bullet-list-67"></i>Mis Ramas </a>
         
-          <el-menu-item index="1-1"><sidebar-link to="/dashboard-auction" :name="$t('sidebar.add-auction')" icon="tim-icons icon-bank"/></el-menu-item>
-          <el-menu-item index="1-2"><sidebar-link to="/dashboard-sale" :name="$t('sidebar.add-sale')" icon="tim-icons icon-basket-simple"/></el-menu-item> 
-          <el-menu-item index="1-3"><sidebar-link to="/users" :name="$t('sidebar.users')" icon="mdi mdi-account-edit" style="font-size:19px;"/></el-menu-item> 
-          <el-menu-item index="1-4" v-show="role === 'Super Administrador'"><sidebar-link to="/config" :name="$t('sidebar.config')" icon="mdi mdi-cellphone-settings-variant" style="font-size:19px;"/></el-menu-item> 
-       
-      </el-submenu>
-    </el-menu>
-   
+         <b-collapse id="collapse-2" class="mt-2" style="background-color: rgb(21 21 33);" >
+             <sidebar-link to="/calendar" :name="$t('sidebar.calendar')" icon="tim-icons icon-calendar-60"/>
+             <sidebar-link to="/branch" :name="$t('sidebar.config')" icon="tim-icons icon-settings-gear-63"/>
+         </b-collapse>
+        </li>
+          
+    
 
       </template>
     </side-bar>
+    </div>
     <div class="main-panel">
       <top-navbar></top-navbar>
 
-      <dashboard-content @click.native="toggleSidebar"></dashboard-content>
+      <dashboard-content @click.native="toggleSidebar">
+
+      </dashboard-content>
 
       <content-footer></content-footer>
     </div>
-   <div :style="{'display': installBtn}"><div class="notifications" >
-    <span mode="in-out">
-      <div data-notify="container" role="alert" data-notify-position="top-center" 
-      class="alert open alert-with-icon bottom right alert-primary list-enter-to"  style="background-color: rgba(253, 185, 19, 0.64);bottom: 20px;">
-       <base-button
-                icon
-                round
-                simple
-                type="white"
-                block
-                @click="installer()"
-              data-toggle="tooltip"  title="Instalar" class="col-xs-1 "
-              style="
-    border-color:rgba(255, 255, 255, 0.01);
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    margin-top: -18px;">
-    <i class="mdi mdi-cellphone-settings-variant text-white" style="font-size: 30px;color:#344675;"></i>
-              
-              </base-button>
-          <base-button
-          data-notify="icon"
-                icon
-                round
-                simple
-                type="white"
-                block
-                @click="close()"
-              data-toggle="tooltip" data-placement="top" title="close"  class="alert-icon col-xs-1 "
-              style="
-    border-color:rgba(255, 255, 255, 0.01);
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    margin-top: -18px;">
-                  <i class="mdi mdi-close text-white" style="font-size: 20px;color:#344675;"></i>
-              </base-button>
-          <!-- <span data-notify="icon" class="alert-icon mdi mdi-cellphone-arrow-down"></span> -->
-           <div data-notify="message" @click="installer()"><div class="title"><b>{{name_app}}<br></b></div>
-            <div @click="installer()">Desea instalar nuestra app ?</div>
-             </div></div></span></div>
-
-  </div>
   </div>
 </template>
 <style lang="scss">
@@ -112,17 +66,16 @@ import Installabel from "../../components/Installabel";
 
 
 
-const URL_API_SUBASTA = config.url_api.URL_API_SUBASTA;
-const URL_API_CENTRAL = config.url_api.URL_API_CENTRAL;
+const URL = config.url.URL_API;
+
 /**
  * Arma la URL de el servicio
  */
 function buildURL(api, resource = "") {
-  if (api == "URL_API_CENTRAL") {
-    return URL_API_CENTRAL + resource;
-  } else {
-    return URL_API_SUBASTA + resource;
+  if (api == "URL_API") {
+    return URL + resource;
   }
+  
 }
 
 
@@ -161,6 +114,8 @@ export default {
     };
   },
   created(){
+   this.permission();
+   this.initialsetup();
    let installPrompt;
     window.addEventListener("beforeinstallprompt", e =>{
         e.preventDefault();
@@ -198,6 +153,7 @@ this.installer = () =>{
         installPrompt = null; 
       },
     toggleSidebar() {
+ 
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);
       }
@@ -214,19 +170,32 @@ this.installer = () =>{
       handleClose(key, keyPath) {
         //console.log(key, keyPath);
       },
-      permission() {
-        
-        axios.get(buildURL("URL_API_SUBASTA", "auth/me"),{ headers:{
-          'Authorization': 'Bearer ' + localStorage.getItem('token')}})
+       initialsetup(){
+           axios.get(buildURL("URL_API", "initialsetup"))
+              .then(res => {
+            localStorage.setItem('name_app',res.data[0][0].name_app);
+            localStorage.setItem('telef_app',res.data[0][0].telef_app);
+            localStorage.setItem('logo_app',res.data[0][0].logo_app);
+            localStorage.setItem('email_app',res.data[0][0].email_app);
+              }).catch(res => { });
+        },
+       permission() {
+         const AuthToken = 'Bearer ' + localStorage.getItem('token');
+
+         axios.get(buildURL("URL_API", "auth/me"),{headers:{ 
+            'Authorization': AuthToken,
+         }})
         .then((res) => {
           if(res.data.user.isActive == "Inactivo" ){
-            axios.post(buildURL("URL_API_SUBASTA", "auth/logout"),{ token: localStorage.getItem('token')})
+             axios.post(buildURL("URL_API", "auth/logout"),{ token: localStorage.getItem('token')})
         .then(res => {
+          
           localStorage.removeItem('token');
           localStorage.removeItem('status');
           localStorage.removeItem('role');
           localStorage.removeItem('email');
           localStorage.removeItem('isActive');
+          localStorage.removeItem('business_id');
           this.$router.push('/out')
 
         this.$notify({
@@ -250,18 +219,21 @@ this.installer = () =>{
             
   if(res.data.role != null){
     
- if(res.data.role.name == 'Gerente de Ventas' || res.data.role.name == 'Super Administrador'){
+ if(res.data.role.name == 'Admin_negocio' || res.data.role.name == 'Administrator'){
           localStorage.removeItem('status');
           localStorage.setItem('status', true);
           localStorage.setItem('role', res.data.role.name);
           localStorage.setItem('email', res.data.user.email);
           localStorage.setItem('isActive', res.data.user.isActive);
+          localStorage.setItem('business_id', res.data.branch_data[0].business_id);
           }else{
           localStorage.removeItem('status');
           localStorage.setItem('status', false);
           localStorage.setItem('role', res.data.role.name);
           localStorage.setItem('email', res.data.user.email);
           localStorage.setItem('isActive', res.data.user.isActive);
+          localStorage.setItem('isActive', res.data.user.isActive);
+          localStorage.setItem('business_id', res.data.branch_data[0].business_id);
           }}
           }
         }).catch((error) => {
@@ -282,3 +254,5 @@ this.installer = () =>{
 
 
 </script>
+
+
